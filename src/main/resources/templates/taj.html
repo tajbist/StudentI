@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Write</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+          integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                loadajax();
+            }, 1000); // milliseconds
+        });
+
+        function loadajax() {
+            $.ajax({
+                url: "http://localhost:9000/restapi/students"
+            }).then(function (data) {
+
+                /*  $.each(data, function (key, value) {
+                 $(".container ").append(key + " " + value.id + " " + value.roll + " " + value.firstName + " " + value.lastName + " " + value.address.street + " " + value.address.city + " " + value.address.zipCode + " " + value.address.state + "<br/>");
+                 });*/
+                var trHTML = '';
+                $.each(data, function (id, value) {
+                    trHTML += '<tr><td>' + id + '</td><td>' + value.id + '</td><td>' + '</td><td>' + value.roll + '</td> <td>' + value.firstName + '</td><td>' + value.lastName + '</td><td>' + value.address.city + '</td><td>' + value.address.state + '</td><td>' + value.address.zipCode + '</td><td>'+value.address.street+'</td></tr>'
+                });
+                $('#container').append(trHTML);
+
+            });
+        }
+
+        /*    function loadajax() {
+         $.ajax({
+         url: "http://localhost:9000/restapi/students/3"
+         }).then(function (data) {
+
+         $(".container").append(data.id +" "+data.roll +" "+data.firstName +" "+data.lastName);
+         });
+         }*/
+
+
+    </script>
+</head>
+<body>
+
+
+<div class="">
+    <div class="col-md-12">
+        <h3>List of Students are</h3>
+        <table class="table ">
+            <th>Student Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Street</th>
+            <th>ZipCode</th>
+            <th>Action</th>
+        </table>
+        <table class="table " id="container">
+
+        </table>
+        <a class="btn btn-success btn-large" th:href="@{/admin/api/add}">Add New</a></div>
+</div>
+
+</body>
+</html>

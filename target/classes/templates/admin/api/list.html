@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"  >
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+          integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"/>
+    <link th:href="@{https://fonts.googleapis.com/css?family=Varela+Round}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
+    <title>List All</title>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12">
+        <h3>List of Students are</h3>
+        <p th:text="${msg}"></p>
+        <table class="table">
+            <th>Student Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Street</th>
+            <th>ZipCode</th>
+
+            <tr th:each="stu :${students}">
+                <td th:text="${stu.roll}"></td>
+                <td th:text="${stu.firstName}"></td>
+                <td th:text="${stu.lastName}"></td>
+                <td th:text="${stu.address.city}"></td>
+                <td th:text="${stu.address.state}"></td>
+                <td th:text="${stu.address.street}"></td>
+                <td th:text="${stu.address.zipCode}"></td>
+
+                <td>
+                    <a th:href="@{edit/{id}(id=${stu.id})}"><span>Edit</span></a>
+                    <a th:href="@{delete/{id}(id=${stu.id})}"><span>Delete</span></a>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-success btn-large" th:href="@{/admin/api/add}">Add New</a> </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+        integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>

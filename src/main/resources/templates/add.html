@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+          integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"/>
+<!--    <link rel="stylesheet" th:href="@{css/app.css}"/>-->
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="ctnr " th:fragment="addStudent">
+
+    <div class="container">
+        <header>
+            <h1>Add Student</h1>
+        </header>
+    <main>
+        <div class="pull-md-6 col-md-6 " th:fragment="addStudent">
+            <h3 th:text="${msg}"></h3>
+            <form    id="addform" th:object="${student}" method="post"
+                  enctype="multipart/form-data">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <!--<label>Student</label><br/>-->
+
+
+                <label for="firstname">FirstName</label>
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstname" placeholder="FirstName"/>
+
+                <label for="lastName">LastName</label>
+                <input type="text" th:field="*{lastName}" class="form-control" id="lastname" placeholder="LastName"/>
+                <label for="city">City</label>
+                <input type="text" th:field="*{address.city}" class="form-control" id="city" placeholder="city"/>
+                <label for="state">State</label>
+                <input type="text" th:field="*{address.state}" class="form-control" id="state" placeholder="state"/>
+                <label for="street">Street</label>
+                <input type="text" th:field="*{address.street}" class="form-control" id="street" placeholder="street"/>
+                <label for="zipCode">ZipCode</label>
+                <input type="text" th:field="*{address.zipCode}" class="form-control" id="zipCode"
+                       placeholder="zipCode"/>
+                <label for="roll">Student ID</label>
+                <input type="text" th:field="*{roll}" class="form-control" id="roll" placeholder="985061"/>
+                <input type="hidden" th:field="*{id}"/>
+                <button type="submit" class="btn btn-success btn-large">Add</button>
+            </form>
+        </div>
+    </main>
+    </div>
+</div>
+</body>
+</html>

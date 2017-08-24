@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var host="http://localhost:9000/restapi/students/1";
+            $("button").click(function(){
+                $.ajax({url: host, async: false, success: function(result){
+                    request.setRequestHeader("Authorization", "Negotiate");
+                    $("div").html(result);
+                }});
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div><h2>Let AJAX change this text</h2></div>
+
+<button>Change Content</button>
+
+</body>
+</html>
